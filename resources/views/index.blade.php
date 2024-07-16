@@ -39,7 +39,9 @@
                                     alt="Ảnh tin tức 2" width="100%"></a>
                         </div>
                         <div class="article-content">
-                            <h2>{{ $tinnong->title }}</h2>
+                            <a href="{{ route('chi_tiet_tin', $tinnong->id) }}">
+                                <h2 class="text-dark">{{ $tinnong->title }}</h2>
+                            </a>
                             <p>{{ Str::limit($tinnong->content, 500, '...') }}</p>
                         </div>
                     </div>
@@ -55,7 +57,6 @@
                         @foreach ($tinxemnhieu as $item)
                             <div class="article">
                                 <div class="article-content">
-                                    {{-- <h3 class="text-small">Tiêu đề tin tức 3</h3> --}}
                                     <a href="{{ route('chi_tiet_tin', $item->id) }}">
                                         <p class="text-dark">{{ Str::limit($item->content, 30, '...') }}</p>
                                     </a>
@@ -76,33 +77,6 @@
 
     <div style="border-bottom: 5px solid #ccc;"></div>
 
-    {{-- <div class="container mt-3">
-        <h1 class="text-center text-primary fw-bold text-uppercase">Danh sách tin</h1>
-        <div class="row">
-
-            @foreach ($danhsachtin as $item)
-                <div class="col-lg-3 mt-2">
-                    <div class="article2">
-                        <div class="article-thumbnail">
-                            <a href="{{ route('chi_tiet_tin', $item->id) }}">
-                                <img src="{{ $item->image }}" alt="Ảnh tin tức 1" width="250px"
-                                    style="max-height: 180px; height: auto;">
-                            </a>
-                        </div>
-                        <div class="article-content">
-                            <a href="{{ route('chi_tiet_tin', $item->id) }}">
-                                <h6 class="text-dark">{{ Str::limit($item->title, 30, '...') }}</h6>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-            <div id="tin-tuc-container">
-                <!-- Danh sách tin tức ở đây -->
-                {{ $danhsachtin->links() }}
-            </div>
-        </div>
-    </div> --}}
     <div class="container mt-3">
         <h1 class="text-center text-primary fw-bold text-uppercase">Danh sách tin</h1>
         <div class="row" id="tin-tuc-container">

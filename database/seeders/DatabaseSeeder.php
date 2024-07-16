@@ -22,32 +22,52 @@ class DatabaseSeeder extends Seeder
         LoaiTin::truncate();
         DanhMucTin::truncate();
 
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 1; $i < 6; $i++) {
             DanhMucTin::query()->create([
                 'name' => fake()->name(),
             ]);
+            for ($u = 1; $u < 6; $u++) {
+                LoaiTin::query()->create([
+                    'danh_muc_tin_id' => $i,
+                    'name' => fake()->name(),
+                    'description' => fake()->text(200),
+                ]);
+                for ($j = 1; $j < 3; $j++) {
+                    TinTuc::query()->create([
+                        'loai_tin_id' => $u,
+                        'danh_muc_tin_id' => $i,
+                        'title' => fake()->name(),
+                        'content' => fake()->text(1000),
+                        'image' => fake()->imageUrl(),
+                        'is_hot' => 0,
+                        'is_good' => rand(0, 1),
+                        'is_view_lot' => rand(0, 1),
+
+                    ]);
+                }
+            }
         }
 
-        for ($i = 0; $i < 25; $i++) {
-            LoaiTin::query()->create([
-                'danh_muc_tin_id' => rand(1, 5),
-                'name' => fake()->name(),
-                'description' => fake()->text(200),
-            ]);
-        }
+        // for ($i = 0; $i < 25; $i++) {
+        //     LoaiTin::query()->create([
+        //         'danh_muc_tin_id' => rand(1, 5),
+        //         'name' => fake()->name(),
+        //         'description' => fake()->text(200),
+        //     ]);
+        // }
 
-        for ($i = 0; $i < 50; $i++) {
-            TinTuc::query()->create([
-                'loai_tin_id' => rand(1, 5),
-                'danh_muc_tin_id' => rand(1, 5),
-                'title' => fake()->name(),
-                'content' => fake()->text(1000),
-                'image' => fake()->imageUrl(),
-                'is_hot' => 0,
-                'is_good' => rand(0, 1),
-                'is_view_lot' => rand(0, 1),
+        // for ($i = 0; $i < 50; $i++) {
+        //     TinTuc::query()->create([
+        //         'loai_tin_id' => rand(1, 5),
+        //         'danh_muc_tin_id' => rand(1, 5),
+        //         'title' => fake()->name(),
+        //         'content' => fake()->text(1000),
+        //         'image' => fake()->imageUrl(),
+        //         'is_hot' => 0,
+        //         'is_good' => rand(0, 1),
+        //         'is_view_lot' => rand(0, 1),
 
-            ]);
-        }
+        //     ]);
+        // }
     }
 }
