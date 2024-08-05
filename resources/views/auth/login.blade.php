@@ -143,7 +143,7 @@
             </div>
         </div>
     </div>
-@endsection
+@endsection 
 
 @section('script')
     <script>

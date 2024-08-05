@@ -6,7 +6,6 @@
             <div class="lds-pos"></div>
         </div>
     </div>
-
     <div id="main-wrapper">
         <div class="page-wrapper">
             <div class="page-breadcrumb">
@@ -23,43 +22,64 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="container-fluid">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        <form action="{{ route('admin.put_edit_category', ['id' => $data->id]) }}" method="post"
+                        <form action="{{ route('admin.loaitin.update', $data->id) }}" method="post"
                             enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
-                            <input type="hidden" name="id" value="{{ $data->id }}">
+                            <input type="hidden" name="id">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Edit Product</h4>
+                                    <h4 class="card-title">Chỉnh sửa loại tin</h4>
+
+                                    @if (session('success'))
+                                        <div class="alert alert-success text-center">{{ session('success') }}</div>
+                                    @endif
+                                    <div class="form-group">
+                                        <label for="hue-demo">Danh mục</label>
+                                        <select name="danh_muc_tin_id" class="select form-control custom-select"
+                                            style="width: 100%; height:36px;">
+
+                                            @foreach ($danhmuc as $item)
+                                                <option value="{{ $item->id }}"
+                                                    {{ $data->danh_muc_tin_id == $item->id ? 'selected' : '' }}>
+                                                    {{ $item->name }}</option>
+                                            @endforeach
+
+                                        </select>
+                                    </div>
                                     <div class="form-group">
                                         <label for="hue-demo">Name</label>
-                                        <input type="text" class="form-control" value="{{ $data->name }}"
-                                            name="name">
+                                        <input type="text" class="form-control" name="name"
+                                            value="{{ $data->name }}">
                                     </div>
-                                    <div class="form-group">
-                                        <label for="position-bottom-left">Image</label>
-                                        <input type="file" class="form-control" name="image"
-                                            value="{{ $data->image }}">
-                                        <img src="{{ asset('upload') }}/{{ $data->image }}" alt="" width="100px"
-                                            height="80px">
+                                    @error('name')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+
+                                    <div class="form-group row">
+                                        <label for="cono1" class="col-sm-1 text-right control-label col-form-label">Mô
+                                            tả</label>
+                                        <div class="col-sm-11">
+                                            <textarea class="form-control" style="height: 200px" name="description">{{ $data->description }}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="border-top">
+                                        <div class="card-body">
+                                            <a href="{{ route('admin.account.index') }}"><button type="button"
+                                                    class="btn btn-primary">Back</button></a>
+                                            <button type="submit" class="btn btn-success">Save</button>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="border-top">
-                                    <div class="card-body">
-                                        <a href="{{ route('admin.category') }}"><button type="button"
-                                                class="btn btn-primary">Back</button></a>
-                                        <button type="submit" class="btn btn-success">Save</button>
-                                    </div>
-                                </div>
-                            </div>
                         </form>
                     </div>
                 </div>
-            </div> --}}
+            </div>
         @endsection
+
         @section('script')
             <!-- This Page JS -->
             <script src="{{ asset('assets_admin/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js') }}"></script>

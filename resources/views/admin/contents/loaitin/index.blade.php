@@ -12,10 +12,10 @@
 
         <div class="page-wrapper">
 
-            {{-- <div class="page-breadcrumb">
+            <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Tables</h4>
+                        <h4 class="page-title">Quản lý loại tin</h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
@@ -26,7 +26,7 @@
                         </div>
                     </div>
                 </div>
-            </div> --}}
+            </div>
 
             <div class="container-fluid">
 
@@ -34,51 +34,51 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title m-b-0">Category Management</h5>
+                                {{-- <h5 class="card-title m-b-0">Quản lý loại tin</h5> --}}
+                                <a href="{{ route('admin.loaitin.create') }}" class="btn btn-primary">Thêm mới loại tin</a>
                             </div>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead class="thead-light">
                                         <tr>
 
-                                            <th scope="col">Id</th>
-                                            <th scope="col"></th>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Danh mục</th>
                                             <th scope="col">Name</th>
-                                            <th scope="col">Status</th>
+                                            <th scope="col">Description</th>
+                                            <th scope="col">created_at</th>
+                                            <th scope="col">Updated_at</th>
                                             <th scope="col">Operation</th>
                                         </tr>
                                     </thead>
-                                    {{-- <tbody class="customtable">
+                                    <tbody class="customtable">
 
                                         @foreach ($data as $item)
-                                            <tr class="{{ $item->isdelete == 1 ? 'red-background' : '' }}">
-
+                                            <tr>
                                                 <td>{{ $item->id }}</td>
-                                                <td><img src="{{ asset('upload') }}/{{ $item->image }}" alt=""
-                                                        width="70" height="50"></td>
+                                                <td>{{ $item->danhmuctin->name }}</td>
                                                 <td>{{ $item->name }}</td>
-                                                @if ($item->isdelete == 1)
-                                                    <td>Deleted</td>
-                                                    <td>
-                                                        <a href="{{ route('admin.backup_category', ['id' => $item->id]) }}"><button
-                                                                type="button" class="btn btn-primary">Back
-                                                                up</button></a>
-                                                    </td>
-                                                @else
-                                                    <td>Active</td>
-                                                    <td>
-                                                        <a href="{{ route('admin.edit_category', ['id' => $item->id]) }}"><button
-                                                                type="button" class="btn btn-info ">Edit</button></a>
-                                                        <a href="{{ route('admin.delete_category', ['id' => $item->id]) }}"><button
-                                                                type="button"
-                                                                onclick="return confirm('Bạn có chắc muốn xóa danh mục này không')"
-                                                                class="btn btn-danger">Delete</button></a>
-                                                    </td>
-                                                @endif
+                                                <td>{{ $item->description }}</td>
+                                                <td>{{ $item->created_at }}</td>
+                                                <td>{{ $item->updated_at }}</td>
+                                                <td>
+                                                    <a href="{{ route('admin.loaitin.edit', $item->id) }}"><button
+                                                            type="submit" class="btn btn-primary">Update</button></a>
+                                                    <hr>
+                                                    <form action="{{ route('admin.loaitin.destroy', $item->id) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button
+                                                            onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm?')"
+                                                            type="submit" class="btn btn-danger">Delete</button>
+                                                    </form>
+                                                </td>
+
                                             </tr>
                                         @endforeach
 
-                                    </tbody> --}}
+                                    </tbody>
                                 </table>
                             </div>
                         </div>

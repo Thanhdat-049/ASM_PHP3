@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\admin\AccountController;
 use App\Http\Controllers\admin\AdminController;
-
+use App\Http\Controllers\admin\LoaiTinController;
+use App\Http\Controllers\admin\TinTucController;
 use App\Http\Controllers\Auth_admin\LoginAdminController;
 use App\Http\Controllers\TinController;
 use Illuminate\Support\Facades\Auth;
@@ -37,6 +39,11 @@ Route::prefix('admin')
     ->middleware('admin')
     ->as('admin.')
     ->group(function () {
-        Route::get('/', [AdminController::class, 'index'])->name('admin');
+        Route::get('/', [AdminController::class, 'index'])->name('index');
+        Route::resource('account', AccountController::class);
+        Route::resource('loaitin', LoaiTinController::class);
+        Route::resource('tin', TinTucController::class);
+        Route::get('loai-tin/{danh_muc_id}', [TinTucController::class, 'getLoaiTin'])->name('loai-tin');
+
 
     });

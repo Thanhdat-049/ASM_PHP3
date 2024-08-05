@@ -110,11 +110,7 @@
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
 
-        @if (session('msg'))
-            <script>
-                alert('{{ session('msg') }}')
-            </script>
-        @endif
+       
 
         <!-- ============================================================== -->
         <!-- End Topbar header -->

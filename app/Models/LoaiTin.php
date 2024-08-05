@@ -16,7 +16,7 @@ class LoaiTin extends Model
 
     public function danhmuctin()
     {
-        return $this->BelongsTo(DanhMucTin::class);
+        return $this->BelongsTo(DanhMucTin::class, 'danh_muc_tin_id');
     }
     public function tintucs()
     {
