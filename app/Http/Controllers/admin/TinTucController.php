@@ -67,8 +67,6 @@ class TinTucController extends Controller
      */
     public function show(string $id)
     {
-        // $tin = TinTuc::find($id);
-        // return view('admin.contents.tintuc.show', compact('tin'));
     }
 
     /**

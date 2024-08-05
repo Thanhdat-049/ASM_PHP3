@@ -5,9 +5,11 @@ use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\LoaiTinController;
 use App\Http\Controllers\admin\TinTucController;
 use App\Http\Controllers\Auth_admin\LoginAdminController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TinController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -27,9 +29,10 @@ Route::get('/chi_tiet_tin/{id}', [TinController::class, 'chi_tiet_tin'])->name('
 Route::get('/loai_tin/{id}', [TinController::class, 'loai_tin'])->name('loai_tin');
 Route::get('/danh_muc_tin/{id}', [TinController::class, 'danh_muc_tin'])->name('danh_muc_tin');
 Route::get('/search', [TinController::class, 'search'])->name('search');
+
 //login
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 //login admin
 Route::post('admin/login', [LoginAdminController::class, 'login'])->name('admin.login');
